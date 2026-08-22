@@ -1,0 +1,64 @@
+#include<iostream>
+#include<vector>
+#include<fstream>
+#include<algorithm>
+using namespace std;
+int a=0;
+int in;
+char neo;
+class cargo
+{
+    protected:
+    int no,value;
+    vector<int> weight;
+
+    public:
+    cargo(int index);
+    void showcargo(int in);
+};
+
+
+cargo::cargo(int index)
+{
+cout<<"ENTER -1 TO END ";
+while(cin>>value && value!=-1)
+{
+weight.push_back(value);
+}
+
+sort(weight.begin(),weight.end());
+}
+
+void cargo::showcargo(int in)
+{
+cout<<"\n\nSHIPMENT NUMBER  =  "<<in+1;
+
+for(int kg: weight)
+{
+    cout<<"\n"<<kg;
+}
+}
+
+
+
+
+int main()
+{
+vector<cargo> shipment;
+cout<<"FOR NEW SHIPMENT TYPE y";
+
+while(cin>>neo && (neo=='y' || neo=='Y'))
+{
+    cout<<"ENTER DETAILS FOR THE "<<a+1<<"  SHIPMENT";
+    shipment.push_back(a);
+    a++;
+    cout<<"\nFOR NOTHER SHIPMENT TYPE Y/y";
+}
+
+cout<<"ENTER THE SHIPMENT NuMEBR THAT YOU WANT TO ACESSS";
+cin>>in;
+
+in-=1;
+shipment.at(in).showcargo(in);
+return 0;
+}   
