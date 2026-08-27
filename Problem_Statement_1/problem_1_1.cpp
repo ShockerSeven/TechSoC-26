@@ -1,8 +1,9 @@
 #include<iostream>
 #include<vector>
+#include<string>
 using namespace std;
 
-int i,j,neo=0,meh=0,z;
+int i,j,neo=0,meh=0,z,gen;
 vector<vector<char>> symbol;
 
 
@@ -29,6 +30,8 @@ cout<<"ENTER NUMBER OF ROWS :";
 cin>>i;
 cout<<"\nENTER NUMBER OF COLUMN :";
 cin>>j;
+cout<<"\nENTER NUMBER OF GENERATIONS YOU WANT TO RUN";
+cin>>gen;
 
 
 cout<<"\n\n\n\nENTER YOUR FORMATION\n";
@@ -46,56 +49,66 @@ printgrid(symbol);
 
 
 //ACTUAL CODE STARTS 
-
-
+for(int x=1;x<=gen;++x)
+{
 vector<vector<char>> grid(i,vector<char>(j));
    for(int a=0;a<i;++a)
 {
 for(int b=0;b<j;++b)
 {
-{
-    if(a-1<0)
+
+
+int up_a=a-1;
+int down_a=a+1;
+    neo=0;
+    meh=0;
+
+   if(a-1<0)
     {
-        a=i-1;
+        up_a=i-1;
     }
     else if(a+1==i)
     {
-        a=0;
+        down_a=0;
     }
-     if(b-1<0)
+
+
+  for(int z=-1;z<=1;++z)
+{
+    int cont_b=b+z;
+     if(b+z<0)
     {
-        a=j-1;
+        cont_b=j-1;
     }
-    else if(b+1==j)
+    else if(b+z==j)
     {
-        b=0;
+        cont_b=0;
     }
+
+    
+  
+    if(symbol[up_a][cont_b]=='#')
+    {
+        neo++;
+    }
+    else{meh++;}
+    if(symbol[a][cont_b]=='#' && z!=0)
+    {
+        neo++;
+    }
+    else{meh++;}
+    if(symbol[down_a][cont_b]=='#')
+    {
+        neo++;
+    }
+    else{meh++;}
 }
     
-    for(int z=-1;z<=1;++z)
-    {
-    if(symbol[a-1][b+z]=='#')
-    {
-        neo++;
-    }
-    else{meh++;}
-    if(symbol[a][b+z]=='#' && z!=0)
-    {
-        neo++;
-    }
-    else{meh++;}
-    if(symbol[a+1][b+z]=='#')
-    {
-        neo++;
-    }
-    else{meh++;}
-    
-    }
 char cell=symbol[a][b];
  switch (cell)
         {  
         case '.':
-        if(neo>=3)
+        if(neo==3)
         {
             grid[a][b]='#';
         }
@@ -103,8 +116,9 @@ char cell=symbol[a][b];
         {
             grid[a][b]='.';
         }
+        break;
         case '#':
-        if(meh<2 || meh>3)
+        if(neo<2 || neo>3)
         {
             grid[a][b]='.';
         }
@@ -112,6 +126,7 @@ char cell=symbol[a][b];
         {
             grid[a][b]='#';
         }
+        break;
         }
 } 
 }
@@ -124,7 +139,8 @@ for(int b=0;b<j;++b)
     symbol[a][b]=grid[a][b];
 }
 }
-cout<<"\n\n1st GEN";
+cout<<"\n\n"<<x<<" th  GEN";
 printgrid(symbol);
+}
 return 0;
 }
