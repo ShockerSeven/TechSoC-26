@@ -8,7 +8,7 @@ vector<vector<char>> symbol;
 
 
 
-
+//CODE TO PRINT GRID
 void printgrid(vector<vector<char>>& symbol)
 {
 for(int a=0;a<i;++a)
@@ -63,6 +63,7 @@ int down_a=a+1;
     neo=0;
     meh=0;
 
+//JOINING END POINTS
    if(a-1<0)
     {
         up_a=i-1;
@@ -86,7 +87,7 @@ int down_a=a+1;
     }
 
     
-  
+  //COUTNTING LIVES
     if(symbol[up_a][cont_b]=='#')
     {
         neo++;
@@ -103,7 +104,8 @@ int down_a=a+1;
     }
     else{meh++;}
 }
-    
+
+//USING RULES
 char cell=symbol[a][b];
  switch (cell)
         {  
@@ -131,7 +133,7 @@ char cell=symbol[a][b];
 } 
 }
 
-
+//REPLACING ORIGNAL VECTOR
  for(int a=0;a<i;++a)
 {
 for(int b=0;b<j;++b)
