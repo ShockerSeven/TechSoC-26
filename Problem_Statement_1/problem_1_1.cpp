@@ -144,5 +144,7 @@ for(int b=0;b<j;++b)
 cout<<"\n\n"<<x<<" th  GEN";
 printgrid(symbol);
 }
+
+cout<<neo;
 return 0;
 }
