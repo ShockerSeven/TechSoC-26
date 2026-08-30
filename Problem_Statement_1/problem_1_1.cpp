@@ -3,7 +3,7 @@
 #include<string>
 using namespace std;
 
-int i,j,neo=0,meh=0,z,gen;
+int i,j,neo=0,meh=0,z,gen,id=0,osc=0,alive=0;
 vector<vector<char>> symbol;
 
 
@@ -47,10 +47,13 @@ string s;
 cout<<"GEN "<<z<<" FORMATION \n";
 printgrid(symbol);
 
+vector<vector<vector<char>>> history ;
+history.push_back(symbol);
 
 //ACTUAL CODE STARTS 
 for(int x=1;x<=gen;++x)
 {
+
 vector<vector<char>> grid(i,vector<char>(j));
    for(int a=0;a<i;++a)
 {
@@ -68,7 +71,7 @@ int down_a=a+1;
     {
         up_a=i-1;
     }
-    else if(a+1==i)
+     if(a+1==i)
     {
         down_a=0;
     }
@@ -132,19 +135,60 @@ char cell=symbol[a][b];
         }
 } 
 }
+if(grid==symbol)
+    {
+        id=1;
+    }
+
 
 //REPLACING ORIGNAL VECTOR
  for(int a=0;a<i;++a)
 {
 for(int b=0;b<j;++b)
 {
+    
     symbol[a][b]=grid[a][b];
+    
 }
 }
+history.push_back(symbol);
 cout<<"\n\n"<<x<<" th  GEN";
 printgrid(symbol);
 }
 
-cout<<neo;
+for(int k=0;k<i;++k)
+{
+    for(int l=0;l<j;++l)
+    {
+        if(symbol[k][l]=='#')
+        {
+            alive++;
+        }
+    }
+}
+
+for(int k=0;k+2<history.size();++k)
+{
+    if(history[k]==history[k+2] && history[k]!=history[k+1])
+    {
+        osc=1;
+    }
+}
+
+
+
+if(id==1)
+{
+    cout<<"THE PATTERN IS STILL LIFE\n";    
+}
+else if(osc==1)
+{
+    cout<<"PATTERN IS OSCILLATORY";
+}
+else if(alive>0)
+{
+    cout<<"ALIVE";
+}
+else{cout<<"EXTINCT";}
 return 0;
 }
