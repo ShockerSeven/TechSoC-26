@@ -159,13 +159,15 @@ int main()
     cin.ignore();
     getline(cin, str);
 
-    cout<<"\nYOUR PUBLIC KEY : ("<<n<<","<<e<<")"<<endl;
+    cout << "\nYOUR PUBLIC KEY : (" << n << "," << e << ")" << endl;
     encryption(str, n, e);
+    cout << "\nENCRYPTED FORM\n"
+         << endl;
     for (int i = 0; i < ::encrypted.size(); ++i)
     {
-        cout << "\nENCRYPTED FORM\n"<<::encrypted[i];
+        cout << ::encrypted[i];
     }
-    cout << "\n\nDECRYPTED TEXT";
+    cout << "\n\nDECRYPTED TEXT : \n";
     decryption(n, d);
     cout << ::final;
     return 0;

@@ -152,7 +152,7 @@ for(int b=0;b<j;++b)
 }
 }
 history.push_back(symbol);
-cout<<"\n\n"<<x<<" th  GEN";
+cout<<"\n\n"<<x<<" th  GEN\n";
 printgrid(symbol);
 }
 
